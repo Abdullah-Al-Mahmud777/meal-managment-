@@ -1,6 +1,6 @@
 # 🍽️ Meal Manager System
 
-🔗 Live Demo: https://mealmangment.netlify.app/
+🔗 Live Demo:https://mealmanager1.netlify.app/
 
 ## 📌 Overview
 Meal Manager System is a simple web application designed to manage daily meals and expenses for multiple members. It helps users track lunch/dinner, calculate costs, and maintain an organized meal record.
@@ -8,7 +8,7 @@ Meal Manager System is a simple web application designed to manage daily meals a
 ## ✨ Features
 - Add multiple members
 - Track daily meals (Lunch & Dinner)
-- Record expenses (Bazar/Cost)
+- Record expenses (Cost)
 - Automatic calculation of total meals and costs
 - Simple and user-friendly interface
 
