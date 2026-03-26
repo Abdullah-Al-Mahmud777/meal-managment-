@@ -30,8 +30,6 @@ Perfect for:
 4. Enter expenses
 5. View calculated totals
 
-## 📷 Screenshot
-*(Add screenshot here if you want)*
 
 ## 📌 Future Improvements
 - User authentication
