@@ -1,10 +1,35 @@
 // ---- Firebase Setup ----
 const firebaseConfig = {
-  databaseURL: "https://meal-2fb00-default-rtdb.firebaseio.com/"
+  apiKey: "AIzaSyB5uhdUxfCnybiXPBrTNz_wnecH8WD-PTY",
+  authDomain: "meal-2fb00.firebaseapp.com",
+  databaseURL: "https://meal-2fb00-default-rtdb.firebaseio.com",
+  projectId: "meal-2fb00",
+  storageBucket: "meal-2fb00.firebasestorage.app",
+  messagingSenderId: "975194604373",
+  appId: "1:975194604373:web:aee3bb5480e19a1a1065dc"
 };
 firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-const dbRef = db.ref('mealApp');
+const auth = firebase.auth();
+const db   = firebase.database();
+
+// Auth guard — redirect to login if not logged in
+auth.onAuthStateChanged(user => {
+  if (!user) {
+    window.location.href = 'login.html';
+  } else {
+    const nameEl = document.getElementById('userNameDisplay');
+    if (nameEl) nameEl.textContent = user.displayName || user.email;
+    const dbRef = db.ref('mealApp/' + user.uid);
+    initApp(dbRef);
+  }
+});
+
+function logout() {
+  auth.signOut().then(() => window.location.href = 'login.html');
+}
+
+// ---- App Init (called after auth) ----
+function initApp(dbRef) {
 
 // ---- State ----
 let state = {
@@ -25,7 +50,6 @@ function loadAndInit() {
     const data = snapshot.val();
     if (data) {
       state = data;
-      // ensure arrays
       state.users    = state.users    || [];
       state.meals    = state.meals    || [];
       state.deposits = state.deposits || [];
@@ -483,3 +507,5 @@ document.getElementById('filterUser').addEventListener('change', renderMealLog);
 
 // ---- Init ----
 loadAndInit();
+
+} // end initApp

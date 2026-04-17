@@ -1,190 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Meal Management System</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <title>MealManager — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="home.css"/>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
+  <nav class="nav">
     <div class="nav-brand">🍽️ MealManager</div>
-    <div style="display:flex;align-items:center;gap:14px">
-      <span id="syncStatus" class="sync-status sync-loading">Connecting...</span>
-      <div class="nav-subtitle">Meal & Deposit Tracker</div>
+    <div class="nav-links">
+      <a href="login.html" class="btn-ghost">Login</a>
+      <a href="login.html#register" class="btn-solid">Get Started</a>
     </div>
   </nav>
 
-  <div class="container">
-
-    <!-- Top Action Grid -->
-    <div class="grid-3">
-
-      <!-- Add User -->
-      <div class="card">
-        <div class="card-header">
-          <span class="card-icon">👤</span>
-          <h2>Add User</h2>
-        </div>
-        <div class="form-group">
-          <input type="text" id="userName" placeholder="Enter user name" />
-        </div>
-        <button class="btn btn-primary full-width" onclick="addUser()">Add User</button>
+  <section class="hero">
+    <div class="hero-content">
+      <span class="badge">✨ Simple & Powerful</span>
+      <h1>Manage Meals &<br/>Track Deposits<br/><span>Effortlessly</span></h1>
+      <p>Track lunch, dinner, deposits and balances for multiple users — all in one place. Real-time sync across all devices.</p>
+      <div class="hero-btns">
+        <a href="login.html#register" class="btn-hero-primary">Start for Free</a>
+        <a href="login.html" class="btn-hero-ghost">Login →</a>
       </div>
-
-      <!-- Add Deposit -->
-      <div class="card">
-        <div class="card-header">
-          <span class="card-icon">💰</span>
-          <h2>Add Deposit</h2>
-        </div>
-        <div class="form-group">
-          <select id="depositUser"></select>
-        </div>
-        <div class="form-group">
-          <input type="number" id="depositAmount" placeholder="Amount (৳)" min="1" />
-        </div>
-        <button class="btn btn-success full-width" onclick="addDeposit()">Add Deposit</button>
-      </div>
-
-      <!-- Add Meal -->
-      <div class="card">
-        <div class="card-header">
-          <span class="card-icon">🍱</span>
-          <h2>Add Meal</h2>
-        </div>
-        <div class="form-group">
-          <select id="mealUser"></select>
-        </div>
-        <div class="form-group">
-          <input type="date" id="mealDate" />
-        </div>
-        <div class="checkbox-group">
-          <label class="checkbox-label">
-            <input type="checkbox" id="lunchCheck" />
-            <span class="checkmark"></span>
-            Lunch
-          </label>
-          <label class="checkbox-label">
-            <input type="checkbox" id="dinnerCheck" />
-            <span class="checkmark"></span>
-            Dinner
-          </label>
-        </div>
-        <button class="btn btn-primary full-width" onclick="addMeal()">Add Meal</button>
-      </div>
-
-    </div>
-
-    <!-- Meal Rate -->
-    <div class="card">
-      <div class="card-header">
-        <span class="card-icon">⚙️</span>
-        <h2>Meal Rate Setting</h2>
-      </div>
-      <div class="rate-row">
-        <div class="rate-item">
-          <label>Per Meal Rate (৳)</label>
-          <input type="number" id="mealRate" placeholder="Optional (৳)" min="1" />
-        </div>
-        <button class="btn btn-outline" onclick="updateRates()">Set Rate</button>
-      </div>
-      <div class="rate-info" id="rateInfo"></div>
-    </div>
-
-    <!-- Summary -->
-    <div class="card">
-      <div class="card-header">
-        <span class="card-icon">📊</span>
-        <h2>Summary</h2>
-      </div>
-      <div class="table-wrap">
-        <table id="summaryTable">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>User</th>
-              <th>Lunch</th>
-              <th>Dinner</th>
-              <th>Total Meals</th>
-              <th>Meal Cost (৳)</th>
-              <th>Deposited (৳)</th>
-              <th>Balance (৳)</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="summaryBody"></tbody>
-          <tfoot id="summaryFoot"></tfoot>
-        </table>
+      <div class="hero-stats">
+        <div class="stat"><strong>Multi-User</strong><span>Track everyone</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>Real-time</strong><span>Firebase sync</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>PDF Export</strong><span>Monthly reports</span></div>
       </div>
     </div>
-
-    <!-- PDF Export -->
-    <div class="card">
-      <div class="card-header">
-        <span class="card-icon">📄</span>
-        <h2>PDF Report</h2>
-      </div>
-      <div class="rate-row">
-        <div class="rate-item">
-          <label>Select Month (Optional)</label>
-          <input type="month" id="pdfMonth" />
-        </div>
-        <button class="btn btn-primary" onclick="generatePDF(false)">⬇ Monthly PDF</button>
-        <button class="btn btn-success" onclick="generatePDF(true)">⬇ Full Report PDF</button>
+    <div class="hero-visual">
+      <div class="mock-card">
+        <div class="mock-header">📊 Summary</div>
+        <div class="mock-row"><span>Rahim</span><span class="mock-badge">12 meals</span><span class="mock-green">৳ 600</span></div>
+        <div class="mock-row"><span>Karim</span><span class="mock-badge">9 meals</span><span class="mock-red">-৳ 50</span></div>
+        <div class="mock-row"><span>Shuvo</span><span class="mock-badge">15 meals</span><span class="mock-green">৳ 250</span></div>
+        <div class="mock-footer">Total: 36 meals &nbsp;|&nbsp; ৳ 3,200 deposited</div>
       </div>
     </div>
+  </section>
 
-    <!-- Logs Grid -->
-    <div class="grid-2">
-
-      <!-- Meal Log -->
-      <div class="card">
-        <div class="card-header">
-          <span class="card-icon">📋</span>
-          <h2>Meal Log</h2>
-        </div>
-        <div class="form-group">
-          <select id="filterUser"><option value="">All Users</option></select>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Date</th><th>User</th><th>Lunch</th><th>Dinner</th><th></th></tr>
-            </thead>
-            <tbody id="mealLogBody"></tbody>
-          </table>
-        </div>
+  <section class="features">
+    <h2>Everything you need</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span>👥</span>
+        <h3>Multiple Users</h3>
+        <p>Add unlimited members and track each person's meals and payments separately.</p>
       </div>
-
-      <!-- Deposit Log -->
-      <div class="card">
-        <div class="card-header">
-          <span class="card-icon">🧾</span>
-          <h2>Deposit Log</h2>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>User</th><th>Amount (৳)</th><th>Date</th><th></th></tr>
-            </thead>
-            <tbody id="depositLogBody"></tbody>
-          </table>
-        </div>
+      <div class="feature-card">
+        <span>🍱</span>
+        <h3>Lunch & Dinner</h3>
+        <p>Log lunch and dinner individually per day per user with a single click.</p>
       </div>
-
+      <div class="feature-card">
+        <span>💰</span>
+        <h3>Deposit Tracking</h3>
+        <p>Record deposits and instantly see who owes money and who has a surplus.</p>
+      </div>
+      <div class="feature-card">
+        <span>📄</span>
+        <h3>PDF Reports</h3>
+        <p>Generate monthly or full reports as PDF with one click — ready to share.</p>
+      </div>
+      <div class="feature-card">
+        <span>🔄</span>
+        <h3>Real-time Sync</h3>
+        <p>Powered by Firebase — data syncs instantly across all devices and browsers.</p>
+      </div>
+      <div class="feature-card">
+        <span>⚙️</span>
+        <h3>Custom Meal Rate</h3>
+        <p>Set your own per-meal rate anytime. Cost and balance update automatically.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div id="toast" class="toast"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
-  <script src="app.js"></script>
+  <section class="cta">
+    <h2>Ready to get started?</h2>
+    <p>Join now and take control of your meal management.</p>
+    <a href="login.html#register" class="btn-hero-primary">Create Free Account</a>
+  </section>
+
+  <footer class="footer">
+    <span>🍽️ MealManager &copy; 2026</span>
+  </footer>
+
 </body>
 </html>
