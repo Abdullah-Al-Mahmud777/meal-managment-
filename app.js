@@ -505,6 +505,16 @@ function render() {
 // ---- Filter listener ----
 document.getElementById('filterUser').addEventListener('change', renderMealLog);
 
+// ---- Expose to global scope for onclick handlers ----
+window.addUser       = addUser;
+window.addDeposit    = addDeposit;
+window.addMeal       = addMeal;
+window.updateRates   = updateRates;
+window.deleteMeal    = deleteMeal;
+window.deleteDeposit = deleteDeposit;
+window.deleteUser    = deleteUser;
+window.generatePDF   = generatePDF;
+
 // ---- Init ----
 loadAndInit();
 
